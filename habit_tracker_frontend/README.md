@@ -1,82 +1,60 @@
-# Lightweight React Template for KAVIA
+# Habit Tracker Pro (Frontend-only)
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+A modern, responsive Daily Habit Tracker React SPA that stores everything locally (IndexedDB with graceful fallback to localStorage). Includes streaks, analytics, reminders, exports, offline support, and a demo data generator.
+
+## Quick start
+
+```bash
+npm install
+npm start
+```
+
+Open http://localhost:3000
 
 ## Features
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+- Habits: create, edit, delete, archive/restore
+- Categories + color labels
+- Daily check-ins with:
+  - current streak and best streak
+  - completion rates (7/30 day windows)
+- Dashboard summary cards:
+  - total habits, active habits, today completion, best streak
+- Analytics:
+  - weekly/monthly completion charts (lightweight SVG)
+  - habit heatmap for last ~12 weeks
+- Gamification:
+  - XP and levels computed from completed check-ins
+  - badges for streak milestones
+- Exports:
+  - CSV export (habits + history)
+  - PDF export via a lightweight print view (“Save as PDF”)
+- Notifications:
+  - best-effort daily reminders (Notifications API + timers while tab is open)
+- Offline/PWA:
+  - custom service worker for offline caching
+  - manifest configured
 
-## Getting Started
+## Storage
 
-In the project directory, you can run:
+- Preferred: IndexedDB
+- Fallback: localStorage
+- Basic schema versioning is included.
 
-### `npm start`
+## Feature flags
 
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Controlled via `REACT_APP_FEATURE_FLAGS` (comma-separated). If empty/unset, features default ON.
 
-### `npm test`
+Flags:
+- `notifications`
+- `export_csv`
+- `export_pdf`
+- `analytics`
+- `gamification`
+- `pwa`
+- `demo_data`
 
-Launches the test runner in interactive watch mode.
+## Notes
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-## Customization
-
-### Colors
-
-The main brand colors are defined as CSS variables in `src/App.css`:
-
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
-```
-
-### Components
-
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
-
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
-
-## Learn More
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Reminder scheduling is best-effort: browsers may throttle timers in background tabs.
+- PDF export uses the browser print dialog to avoid bundling a heavy PDF library.
