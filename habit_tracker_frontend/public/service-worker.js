@@ -1,6 +1,6 @@
 /* Simple offline-first service worker (no Workbox) */
-const CACHE_NAME = "habit-tracker-shell-v1";
-const SHELL_URLS = ["/", "/index.html", "/manifest.json", "/favicon.ico"];
+const CACHE_NAME = "habit-tracker-shell-v2";
+const SHELL_URLS = ["/", "/index.html", "/manifest.json", "/favicon.ico", "/robots.txt"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -63,3 +63,4 @@ self.addEventListener("fetch", (event) => {
       })
     );
   }
+});

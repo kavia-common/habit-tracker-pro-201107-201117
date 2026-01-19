@@ -11,6 +11,15 @@ npm start
 
 Open http://localhost:3000
 
+## Routes (MVP)
+
+- `/` Dashboard (summary, month heatmap, 7-day trend)
+- `/habits` Habits list (quick check-in, edit, archive)
+- `/habits/new` Add habit (modal)
+- `/habits/:habitId/edit` Edit habit (modal)
+- `/analytics` Per-habit metrics (streaks, 30-day completion rate)
+- `/settings` Notifications (best-effort) + CSV export
+
 ## Features
 
 - Habits: create, edit, delete, archive/restore
